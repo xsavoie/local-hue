@@ -1,4 +1,5 @@
 import ToggleLight from "./ToggleLight";
+import "./LightContainer.css"
 
 
 export default function LightContainer(props) {
@@ -6,15 +7,19 @@ export default function LightContainer(props) {
   // console.log(props)
 
   return (
-    <div>
-      <h2>{id}</h2>
-      <h2>{name}</h2>
-      <ToggleLight
-        id={id}
-        state={state}
-        lights={props.lights}
-        setLights={props.setLights}
-      />
+    <div className="light-container">
+      <div className="light-info">
+        <h4>{name}</h4>
+        <h4>id: {id}</h4>
+      </div>
+      <div>
+        <ToggleLight
+          id={id}
+          state={state}
+          lights={props.lights}
+          setLights={props.setLights}
+        />
+      </div>
     </div>
   );
 }

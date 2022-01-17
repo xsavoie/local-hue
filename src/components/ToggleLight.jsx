@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
+import SliderButton from './SliderButton';
  
 const bridge = process.env.REACT_APP_HUE_BRIDGE_IP;
 const username = process.env.REACT_APP_HUE_USERNAME;
@@ -43,7 +44,10 @@ export default function ToggleLight(props) {
 
   return (
     <div>
-      <button onClick={() => handleToggle(id, toggle, lights, setLights)}>toggle!</button>
+      <SliderButton 
+      handleClick={() => handleToggle(id, toggle, lights, setLights)}
+      />
+      {/* <button onClick={() => handleToggle(id, toggle, lights, setLights)}>toggle!</button> */}
     </div>
   );
 }
