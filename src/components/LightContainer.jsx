@@ -1,5 +1,6 @@
 import ToggleLight from "./ToggleLight";
 import "./LightContainer.css"
+import ColorPicker from "./ColorPicker";
 
 
 export default function LightContainer(props) {
@@ -14,6 +15,12 @@ export default function LightContainer(props) {
       </div>
       <div>
         <ToggleLight
+          id={id}
+          state={state}
+          lights={props.lights}
+          setLights={props.setLights}
+        />
+        <ColorPicker
           id={id}
           state={state}
           lights={props.lights}

@@ -35,11 +35,8 @@ const handleToggle = async (lightId, currentState, lights, setLights) => {
 }
 
 export default function ToggleLight(props) {
-  // const { bridge, username } = props;
   const { id, state, lights, setLights } = props;
-  
   const toggle = state.on 
-  // console.log("test", toggle)
 
 
   return (
