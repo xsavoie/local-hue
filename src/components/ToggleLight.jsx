@@ -46,6 +46,7 @@ export default function ToggleLight(props) {
     <div>
       <SliderButton 
       handleClick={() => handleToggle(id, toggle, lights, setLights)}
+      checked={state.on}
       />
       {/* <button onClick={() => handleToggle(id, toggle, lights, setLights)}>toggle!</button> */}
     </div>
