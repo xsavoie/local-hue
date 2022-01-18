@@ -1,7 +1,5 @@
 import { Switch } from '@mui/material';
 import axios from 'axios';
-import { useState } from 'react';
-import SliderButton from './SliderButton';
  
 const bridge = process.env.REACT_APP_HUE_BRIDGE_IP;
 const username = process.env.REACT_APP_HUE_USERNAME;
@@ -10,14 +8,14 @@ const updateLights = (currentId, lightsState) => {
   let stateCopy = [...lightsState];
 
   const updatedLight = stateCopy.find((light) => light.id === currentId);
-  updatedLight.state.on = !updatedLight.state.on
+  updatedLight.state.on = !updatedLight.state.on;
   
   const newState = lightsState.map(light => light.id === currentId ? updatedLight : light);
 
   return newState;
 }
 
-
+// create function that handles toggle + state
 const handleToggle = async (lightId, currentState, lights, setLights) => {
   currentState = !currentState
   setLights(updateLights(lightId, lights))
@@ -30,11 +28,11 @@ const handleToggle = async (lightId, currentState, lights, setLights) => {
   } catch (err) {
     console.log(err);
   }
-}
+};
 
 export default function ToggleLight(props) {
   const { id, state, lights, setLights } = props;
-  const toggle = state.on 
+  const toggle = state.on;
 
 
   return (

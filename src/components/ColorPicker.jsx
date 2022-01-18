@@ -11,10 +11,10 @@ const bridge = process.env.REACT_APP_HUE_BRIDGE_IP;
 const username = process.env.REACT_APP_HUE_USERNAME;
 
 
-const changeColor = (lightId, color, lights, setLights) => {
+const changeColor = (lightId, colorXY, lights, setLights) => {
   try {
     return axios.put(`http://${bridge}/api/${username}/lights/${lightId}/state`,
-      color
+      colorXY
     )
   } catch (err) {
     console.log(err);
@@ -25,23 +25,23 @@ const changeColor = (lightId, color, lights, setLights) => {
 
 export default function ColorPicker(props) {
   const { id, state, lights, setLights } = props;
-  const [color, setColor] = useState({ r: 50, g: 100, b: 150 })
+  const [color, setColor] = useState({ r: 50, g: 100, b: 150 });
 
   const popover = useRef();
   const [isOpen, toggle] = useState(false);
   const close = useCallback(() => toggle(false), []);
-  useClickOutside(popover, close)
+  useClickOutside(popover, close);
 
 
   useEffect(() => {
     let xy = ColorConverter.rgbToXy(color['r'], color['g'], color['b']);
     let parsedXY = {
       xy: [xy.x, xy.y]
-    }
+    };
     // console.log(parsedXY)
     // turn on light if light not on
     changeColor(id, parsedXY, lights, setLights)
-  }, [color])
+  }, [color]);
 
 
   return (

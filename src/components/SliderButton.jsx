@@ -1,9 +1,9 @@
 import { Switch } from '@mui/material';
-import './SliderButton.css'
+import './SliderButton.css';
 
 
 export default function SliderButton(props) {
-  const { handleClick, checked } = props
+  const { handleClick, checked } = props;
 
   return (
     <Switch 
