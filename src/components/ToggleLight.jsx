@@ -1,3 +1,4 @@
+import { Switch } from '@mui/material';
 import axios from 'axios';
 import { useState } from 'react';
 import SliderButton from './SliderButton';
@@ -7,11 +8,8 @@ const username = process.env.REACT_APP_HUE_USERNAME;
 
 const updateLights = (currentId, lightsState) => {
   let stateCopy = [...lightsState];
-  console.log('stateCopy:', stateCopy)
-  console.log("id:", currentId)
 
   const updatedLight = stateCopy.find((light) => light.id === currentId);
-  console.log(updatedLight)
   updatedLight.state.on = !updatedLight.state.on
   
   const newState = lightsState.map(light => light.id === currentId ? updatedLight : light);
@@ -23,7 +21,7 @@ const updateLights = (currentId, lightsState) => {
 const handleToggle = async (lightId, currentState, lights, setLights) => {
   currentState = !currentState
   setLights(updateLights(lightId, lights))
-  console.log("toggle:", currentState)
+  // console.log("toggle:", currentState)
 
   try {
     return axios.put(
@@ -41,10 +39,14 @@ export default function ToggleLight(props) {
 
   return (
     <div>
-      <SliderButton 
+      <Switch 
+        checked={toggle}
+        onClick={() => handleToggle(id, toggle, lights, setLights)}
+      />
+      {/* <SliderButton 
       handleClick={() => handleToggle(id, toggle, lights, setLights)}
       checked={state.on}
-      />
+      /> */}
       {/* <button onClick={() => handleToggle(id, toggle, lights, setLights)}>toggle!</button> */}
     </div>
   );

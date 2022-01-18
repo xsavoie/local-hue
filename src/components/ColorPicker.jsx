@@ -38,8 +38,8 @@ export default function ColorPicker(props) {
     let parsedXY = {
       xy: [xy.x, xy.y]
     }
-    console.log(parsedXY)
-
+    // console.log(parsedXY)
+    // turn on light if light not on
     changeColor(id, parsedXY, lights, setLights)
   }, [color])
 

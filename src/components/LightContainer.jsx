@@ -1,6 +1,7 @@
 import ToggleLight from "./ToggleLight";
 import "./LightContainer.css"
 import ColorPicker from "./ColorPicker";
+import BrightnessSlider from "./BrightnessSlider";
 
 
 export default function LightContainer(props) {
@@ -20,6 +21,7 @@ export default function LightContainer(props) {
           lights={props.lights}
           setLights={props.setLights}
         />
+        <BrightnessSlider/>
         <ColorPicker
           id={id}
           state={state}
