@@ -2,7 +2,6 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import './App.css';
 import LightContainer from './components/LightContainer';
-import ToggleLight from './components/ToggleLight';
 
 const bridge = process.env.REACT_APP_HUE_BRIDGE_IP;
 const username = process.env.REACT_APP_HUE_USERNAME;
