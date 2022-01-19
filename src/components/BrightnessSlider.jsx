@@ -31,7 +31,7 @@ export default function BrightnessSlider(props) {
   
   useEffect(() => {
     handleBrightness(id, brightness, lights, setLights);
-    console.log("changed brightness")
+    // console.log("changed brightness")
   }, [brightness]); 
 
   return (

@@ -5,40 +5,50 @@ const username = process.env.REACT_APP_HUE_USERNAME;
 export default function useHueLight(props) {
   const { id, state, lights, setLights } = props;
 
+  
+  const hueApiRequest = async (request) => {
+    try {
+      return axios.put(
+        `http://${bridge}/api/${username}/lights/${id}/state`,
+        request);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  // updates a specific light on/off --> update full state of light instead
   const updateLights = (currentId, lightsState) => {
     let stateCopy = [...lightsState];
     const updatedLight = stateCopy.find((light) => light.id === currentId);
     updatedLight.state.on = !updatedLight.state.on;
-    
+
     const newState = lightsState.map(light => light.id === currentId ? updatedLight : light);
-  
+
     return newState;
   }
-  
+
   const handleToggle = async (state) => {
     let on = state.on
     on = !on
-    setLights(updateLights(id, lights))
-  
-    try {
-      return axios.put(
-        `http://${bridge}/api/${username}/lights/${id}/state`,
-        {"on": on});
-    } catch (err) {
-      console.log(err);
-    }
+    const request = { on }
+
+    return hueApiRequest(request)
+      .then(res => {
+        setLights(updateLights(id, lights))
+      })
+      .catch(err => {
+        console.log(err)
+      })
+
   };
 
 
 
   // function that runs hue api request and then updates state 
-  const hueEventHandler = (apiReq, stateUpdater) => {
-    apiReq();
-    stateUpdater();
-  }
 
 
-  return {handleToggle, updateLights};
+
+  return { handleToggle, updateLights };
 }
 
 /*

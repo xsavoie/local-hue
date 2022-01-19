@@ -30,7 +30,7 @@ function App() {
     return axios.get(`http://${bridge}/api/${username}/lights/`)
       .then(lights => {
         const lightsArray = lightsParser(lights.data);
-        console.log(lightsArray)
+        console.log("light state", lightsArray)
         setLights(lightsArray);
       })
       .catch(err => {

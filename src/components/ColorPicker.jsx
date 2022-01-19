@@ -36,9 +36,9 @@ export default function ColorPicker(props) {
   useEffect(() => {
     let xy = ColorConverter.rgbToXy(color['r'], color['g'], color['b']);
     let parsedXY = {
-      xy: [xy.x, xy.y]
+      xy: [parseFloat((xy.x).toFixed(4)), parseFloat((xy.y).toFixed(4))]
     };
-    // console.log(parsedXY)
+    console.log(parsedXY)
     // turn on light if light not on
     changeColor(id, parsedXY, lights, setLights)
   }, [color]);
