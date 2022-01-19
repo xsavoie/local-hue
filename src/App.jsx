@@ -31,7 +31,8 @@ function App() {
       .then(lights => {
         const lightsArray = lightsParser(lights.data);
         console.log("light state", lightsArray)
-        setLights(lightsArray);
+        // temporeray reverse for dev purposes
+        setLights(lightsArray.reverse());
       })
       .catch(err => {
         console.log(err);

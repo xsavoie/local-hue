@@ -1,48 +1,31 @@
-import axios from 'axios';
 import { useEffect } from 'react';
 import { useState, useCallback, useRef } from 'react';
 import { RgbColorPicker } from 'react-colorful';
 import useClickOutside from "../hooks/useClickOutside";
+import useHueLight from '../hooks/useHueLight';
 import './ColorPicker.css';
 
-const ColorConverter = require("cie-rgb-color-converter");
-
-const bridge = process.env.REACT_APP_HUE_BRIDGE_IP;
-const username = process.env.REACT_APP_HUE_USERNAME;
 
 
-const changeColor = (lightId, colorXY, lights, setLights) => {
-  try {
-    return axios.put(`http://${bridge}/api/${username}/lights/${lightId}/state`,
-      colorXY
-    )
-  } catch (err) {
-    console.log(err);
-  }
 
-
-}
 
 export default function ColorPicker(props) {
-  const { id, state, lights, setLights } = props;
+  // const { id, state, lights, setLights } = props;
   const [color, setColor] = useState({ r: 50, g: 100, b: 150 });
 
+  const {
+    handleChangeColor,
+  } = useHueLight(props);
+
+  // popover colorpicker
   const popover = useRef();
   const [isOpen, toggle] = useState(false);
   const close = useCallback(() => toggle(false), []);
   useClickOutside(popover, close);
 
-
   useEffect(() => {
-    let xy = ColorConverter.rgbToXy(color['r'], color['g'], color['b']);
-    let parsedXY = {
-      xy: [parseFloat((xy.x).toFixed(4)), parseFloat((xy.y).toFixed(4))]
-    };
-    console.log(parsedXY)
-    // turn on light if light not on
-    changeColor(id, parsedXY, lights, setLights)
-  }, [color]);
-
+    handleChangeColor(color)
+  }, [color, handleChangeColor]);
 
   return (
     <div className="picker">
