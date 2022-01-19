@@ -17,16 +17,19 @@ export default function useHueLight(props) {
     }
   };
 
-  // updates a specific light on/off --> update full state of light instead
-  const updateLights = (currentId, lightsState) => {
-    let stateCopy = [...lightsState];
-    const updatedLight = stateCopy.find((light) => light.id === currentId);
-    updatedLight.state.on = !updatedLight.state.on;
+  
+  const updateLights = (request) => {
+    const param = Object.keys(request)[0];
+    let lightsCopy = [...lights];
+    
+    const lightToUpdate = lightsCopy.find((light) => light.id === id);
+    lightToUpdate.state = {...lightToUpdate.state, [param]: request[param]};
+  
+    const updatedState = lights.map(light => light.id === id ? lightToUpdate : light);
+  
+    return updatedState;
+  }
 
-    const newState = lightsState.map(light => light.id === currentId ? updatedLight : light);
-
-    return newState;
-  };
 
   const xyColorCoverter = (color) => {
     let xy = ColorConverter.rgbToXy(color['r'], color['g'], color['b']);
@@ -41,10 +44,11 @@ export default function useHueLight(props) {
     let on = state.on;
     on = !on;
     const request = { on };
+    console.log(request)
 
     return hueApiRequest(request)
       .then(res => {
-        setLights(updateLights(id, lights));
+        setLights(updateLights(request));
       })
       .catch(err => {
         console.log(err);
@@ -55,10 +59,10 @@ export default function useHueLight(props) {
 
   const handleChangeColor = (color) => {
     const request = xyColorCoverter(color);
-
+    
     return hueApiRequest(request)
       .then(res => {
-        // setLights(updateLights(id, lights));
+        setLights(updateLights(request));
       })
       .catch(err => {
         console.log(err);
@@ -71,12 +75,12 @@ export default function useHueLight(props) {
 
     return hueApiRequest(request)
       .then(res => {
-        // setLights(updateLights(id, lights));
+        setLights(updateLights(request));
       })
       .catch(err => {
         console.log(err);
       })
-  }
+  };
 
   return { handleToggle, updateLights, xyColorCoverter, handleChangeColor, handleBrightness };
 }

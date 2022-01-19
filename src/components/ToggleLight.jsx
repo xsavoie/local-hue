@@ -4,7 +4,7 @@ import useHueLight from '../hooks/useHueLight';
 
 export default function ToggleLight(props) {
   const { state } = props;
-
+  // console.log("PIZZA", props.lights);
   const {
     handleToggle,
   } = useHueLight(props);
