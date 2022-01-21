@@ -2,9 +2,6 @@
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  /* align-items: center; */
-  /* align-self: center; */
-  /* align-content: center; */
   width: 20%;
   border: 3px solid grey;
   border-radius: 14px;

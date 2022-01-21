@@ -1,14 +1,8 @@
-.button-container {
-  /* background-color: salmon; */
-}
-
 .switch {
   position: relative;
   display: inline-block;
   width: 60px;
   height: 34px;
-  /* border: 3px solid rgba(75, 75, 75, 0.664);
-  border-radius: 34px; */
   margin-bottom: 2%;
 }
 
