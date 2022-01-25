@@ -1,29 +1,23 @@
-import { useEffect } from 'react';
-import { useState, useCallback, useRef } from 'react';
-import { RgbColorPicker } from 'react-colorful';
+import { useState, useCallback, useRef } from "react";
+import { RgbColorPicker } from "react-colorful";
 import useClickOutside from "../hooks/useClickOutside";
-import useHueLight from '../hooks/useHueLight';
-import './ColorPicker.css';
-const ColorConverter = require("cie-rgb-color-converter");
-
-
-
-
+import useHueLight from "../hooks/useHueLight";
+import { xyColorCoverter, rgbColorConverter } from "../lib/ColorConverters";
+import "./ColorPicker.css";
 
 export default function ColorPicker(props) {
-  const { id, state, lights, setLights } = props;
-  // console.log(id, "initial xy value", state.xy)
-  let rgbState = ColorConverter.xyBriToRgb(state.xy[0], state.xy[1], state.bri)
-  // console.log(id, "converted to rgb", rgbState)
+  const { color, setColor, bri } = props;
+  const { handleChangeColor } = useHueLight(props);
 
-  const [color, setColor] = useState(rgbState);
+  const [lastColor, setLastColor] = useState(rgbColorConverter(color, bri));
 
-  let xy = ColorConverter.rgbToXy(color['r'], color['g'], color['b']);
-  // console.log(id, "rgb converted to xy", xy)
-
-  const {
-    handleChangeColor,
-  } = useHueLight(props);
+  const handleChange = (newColor) => {
+    const xyColor = xyColorCoverter(newColor);
+    console.log("newcolor", newColor);
+    setLastColor(newColor);
+    setColor(xyColor.xy);
+    handleChangeColor(xyColor);
+  };
 
   // popover colorpicker
   const popover = useRef();
@@ -31,26 +25,20 @@ export default function ColorPicker(props) {
   const close = useCallback(() => toggle(false), []);
   useClickOutside(popover, close);
 
-  //causing multiple reloads
-  // useEffect(() => {
-  //   console.log(color)
-  //   handleChangeColor(color)
-  // }, [color]);
-
   return (
     <div className="picker">
       <div
         className="swatch"
-        style={{ backgroundColor: color }}
+        style={{
+          backgroundColor: `rgb(${lastColor["r"]}, ${lastColor["g"]}, ${lastColor["b"]})`,
+        }}
         onClick={() => toggle(true)}
       />
-
       {isOpen && (
         <div className="popover" ref={popover}>
-          <RgbColorPicker color={color} onChange={setColor} />
+          <RgbColorPicker color={lastColor} onChange={handleChange} />
         </div>
       )}
     </div>
   );
-
 }

@@ -3,16 +3,13 @@ import "./LightContainer.css";
 import ColorPicker from "./ColorPicker";
 import BrightnessSlider from "./BrightnessSlider";
 import { useState } from "react";
-import useHueLight from "../hooks/useHueLight";
+
+// todo: change id, state, lights, setlights to context and inject in components?
 
 export default function LightContainer(props) {
   const { id, name, state } = props;
   const [bri, setBri] = useState(state.bri);
-  // console.log(id, "bri", bri);
-
-  //  const {
-  //   handleBrightness,
-  // } = useHueLight(props);
+  const [color, setColor] = useState(state.xy);
 
   return (
     <div className="light-container">
@@ -34,16 +31,12 @@ export default function LightContainer(props) {
           state={state}
           lights={props.lights}
           setLights={props.setLights}
-
         />
-        {/* <BrightnessSlider
+         <ColorPicker
           id={id}
-          state={state}
-          lights={props.lights}
-          setLights={props.setLights}
-        /> */}
-        <ColorPicker
-          id={id}
+          color={color}
+          bri={bri}
+          setColor={setColor}
           state={state}
           lights={props.lights}
           setLights={props.setLights}

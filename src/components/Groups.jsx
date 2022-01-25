@@ -4,14 +4,16 @@ import Group from "./Group";
 const bridge = process.env.REACT_APP_HUE_BRIDGE_IP;
 const username = process.env.REACT_APP_HUE_USERNAME;
 
-export default function Groups(){
-
-  const [groupsData, setGroupsData] = useState([])
+export default function Groups() {
+  const [groupsData, setGroupsData] = useState([]);
 
   useEffect(() => {
-    return axios.get(`http://${bridge}/api/${username}/groups/`)
+    return axios
+      .get(`http://${bridge}/api/${username}/groups/`)
       .then((groups) => {
-        const parsedGroups = Object.keys(groups.data).map(group => groups.data[group]);
+        const parsedGroups = Object.keys(groups.data).map(
+          (group) => groups.data[group]
+        );
         setGroupsData(parsedGroups);
       })
       .catch((err) => {
@@ -19,15 +21,11 @@ export default function Groups(){
       });
   }, []);
 
-  const groupsToDisplay = groupsData.map(group => (
-    <Group name={group.name} lights={group.lights}/>
-  ))
+  const groupsToDisplay = groupsData.map((group) => (
+    <Group key={group.name} name={group.name} lights={group.lights} />
+  ));
 
-  return (
-    <div>
-    {groupsToDisplay}
-    </div>
-  );
+  return <div>{groupsToDisplay}</div>;
 }
 
 // const groupsData = async () => {
