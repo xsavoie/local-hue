@@ -54,6 +54,8 @@ function App() {
     />
   ));
 
+  console.log("app loaded");
+
   return (
     <>
       <div className="App">{lightsToDisplay}</div>

@@ -2,11 +2,17 @@ import ToggleLight from "./ToggleLight";
 import "./LightContainer.css";
 import ColorPicker from "./ColorPicker";
 import BrightnessSlider from "./BrightnessSlider";
-
+import { useState } from "react";
+import useHueLight from "../hooks/useHueLight";
 
 export default function LightContainer(props) {
   const { id, name, state } = props;
-  // console.log(props)
+  const [bri, setBri] = useState(state.bri);
+  // console.log(id, "bri", bri);
+
+  //  const {
+  //   handleBrightness,
+  // } = useHueLight(props);
 
   return (
     <div className="light-container">
@@ -23,10 +29,19 @@ export default function LightContainer(props) {
         />
         <BrightnessSlider
           id={id}
+          bri={bri}
+          setBri={setBri}
           state={state}
           lights={props.lights}
           setLights={props.setLights}
+
         />
+        {/* <BrightnessSlider
+          id={id}
+          state={state}
+          lights={props.lights}
+          setLights={props.setLights}
+        /> */}
         <ColorPicker
           id={id}
           state={state}

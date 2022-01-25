@@ -1,41 +1,47 @@
-import Slider from '@mui/material/Slider';
-import { useEffect, useState } from 'react';
+import Slider from "@mui/material/Slider";
+import { useEffect, useState } from "react";
 // import debounce from 'lodash.debounce';
 // import { throttle } from 'lodash';
-import useHueLight from '../hooks/useHueLight';
-
-
-
+import useHueLight from "../hooks/useHueLight";
 
 export default function BrightnessSlider(props) {
-  const { state } = props;
-  const [brightness, setBrightness] = useState(state.bri);
+  const { bri, setBri, state } = props;
 
-  const {
-    handleBrightness,
-  } = useHueLight(props);
+  const { handleBrightness } = useHueLight(props);
 
   const handleChange = (event, newValue) => {
-    setBrightness(newValue);
+    setBri(newValue);
+    handleBrightness(newValue);
   };
 
-  //causing multiple reloads
+  // const { state } = props;
+  // const [brightness, setBrightness] = useState(state.bri);
+  // const initialValues = Object.values(state.bri).join('');
+
+  // const {
+  //   handleBrightness,
+  // } = useHueLight(props);
+
+  // const handleChange = (event, newValue) => {
+  //   setBrightness(newValue);
+  // };
+
+  // causing multiple reloads
   // useEffect(() => {
   //   handleBrightness(brightness);
-  // }, [brightness]);
+  // }, [initialValues]);
 
   return (
     <Slider
-      defaultValue={brightness}
-      valueLabelDisplay='auto'
+      defaultValue={bri}
+      valueLabelDisplay="auto"
       steps={10}
       // marks
       min={1}
       max={254}
-      value={brightness}
+      value={bri}
       onChange={handleChange}
-    // onChange={throttle(handleChange, 100)}
+      // onChange={throttle(handleChange, 100)}
     />
   );
-
 }

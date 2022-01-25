@@ -33,6 +33,7 @@ export default function ColorPicker(props) {
 
   //causing multiple reloads
   // useEffect(() => {
+  //   console.log(color)
   //   handleChangeColor(color)
   // }, [color]);
 

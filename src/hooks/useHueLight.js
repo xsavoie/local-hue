@@ -1,5 +1,6 @@
 import axios from "axios";
-const ColorConverter = require("cie-rgb-color-converter");
+import xyColorCoverter from "../lib/xyColorConverter";
+// const ColorConverter = require("cie-rgb-color-converter");
 const bridge = process.env.REACT_APP_HUE_BRIDGE_IP;
 const username = process.env.REACT_APP_HUE_USERNAME;
 
@@ -30,17 +31,7 @@ export default function useHueLight(props) {
     return updatedState;
   }
 
-
-  const xyColorCoverter = (color) => {
-    let xy = ColorConverter.rgbToXy(color['r'], color['g'], color['b']);
-    let parsedXY = {
-      xy: [parseFloat((xy.x).toFixed(4)), parseFloat((xy.y).toFixed(4))]
-    };
-    return parsedXY;
-  };
-
-
-  const handleToggle = (state) => {
+  const handleToggle = async (state) => {
     let on = state.on;
     on = !on;
     const request = { on };
@@ -57,7 +48,7 @@ export default function useHueLight(props) {
   };
 
 
-  const handleChangeColor = (color) => {
+  const handleChangeColor = async (color) => {
     const request = xyColorCoverter(color);
     
     return hueApiRequest(request)
@@ -70,8 +61,9 @@ export default function useHueLight(props) {
   };
 
 
-  const handleBrightness = (brightness) => {
+  const handleBrightness = async (brightness) => {
     const request = {"bri": brightness};
+    // console.log(request);
 
     return hueApiRequest(request)
       .then(res => {
