@@ -19,9 +19,10 @@ export default function BrightnessSlider(props) {
     setBrightness(newValue);
   };
 
-  useEffect(() => {
-    handleBrightness(brightness);
-  }, [brightness]);
+  //causing multiple reloads
+  // useEffect(() => {
+  //   handleBrightness(brightness);
+  // }, [brightness]);
 
   return (
     <Slider

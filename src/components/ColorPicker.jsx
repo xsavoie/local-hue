@@ -31,9 +31,10 @@ export default function ColorPicker(props) {
   const close = useCallback(() => toggle(false), []);
   useClickOutside(popover, close);
 
-  useEffect(() => {
-    handleChangeColor(color)
-  }, [color]);
+  //causing multiple reloads
+  // useEffect(() => {
+  //   handleChangeColor(color)
+  // }, [color]);
 
   return (
     <div className="picker">
