@@ -3,11 +3,7 @@ import useHueLight from '../hooks/useHueLight';
 
 
 export default function ToggleLight(props) {
-  const { state } = props;
-  const {
-    handleToggle,
-  } = useHueLight(props);
-
+  const { state, handleToggle } = props;
 
   return (
     <div>

@@ -61,7 +61,7 @@ export default function useHueGroup(props) {
   };
 
 
-  const syncState = (lightState, groupState) {
+  const syncState = (lightState, groupState) => {
     // loop over lights inside group state, for each chance the lightstate to reflect change
   }
 
