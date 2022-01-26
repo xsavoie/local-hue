@@ -1,4 +1,4 @@
-.light-container {
+.group-container {
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -6,10 +6,10 @@
   border: 3px solid grey;
   border-radius: 14px;
 
-  margin: 2% 2%;
+  margin: 0 2%;
 }
 
-.light-info {
+.group-info {
   display: flex;
   flex-direction: row;
   justify-content: space-between;

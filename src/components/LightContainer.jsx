@@ -4,7 +4,7 @@ import ColorPicker from "./ColorPicker";
 import BrightnessSlider from "./BrightnessSlider";
 import { useState } from "react";
 
-// todo: change id, state, lights, setlights to context and inject in components?
+// todo: change id, state, lights, setlights to context and inject in components
 
 export default function LightContainer(props) {
   const { id, name, state } = props;
