@@ -7,8 +7,8 @@ const username = process.env.REACT_APP_HUE_USERNAME;
 
 
 export default function ToggleGroup(props) {
-  const { id, state } = props;
-  console.log(state)
+  const { id, state, groups, setGroups } = props;
+  console.log("groups:", groups)
   // const {
   //   handleToggle,
   // } = useHueLight(props);
@@ -24,6 +24,21 @@ export default function ToggleGroup(props) {
     }
   };
 
+  const updateGroups = (request) => {
+    const param = Object.keys(request)[0];
+    console.log("param", param)
+    let groupsCopy = [...groups];
+
+    const groupToUpdate = groupsCopy.find((group) => group.id === id);
+    groupToUpdate.action = { ...groupToUpdate.action, [param]: request[param] };
+    
+    const updatedState = groups.map((group) =>
+      group.id === id ? groupToUpdate : group
+    );
+
+    return updatedState;
+  };
+
   const handleToggle = async (state) => {
     let on = state.on;
     on = !on;
@@ -32,8 +47,8 @@ export default function ToggleGroup(props) {
 
     return hueApiRequest(request)
       .then((res) => {
-        console.log(res)
-        // setLights(updateLights(request));
+        // console.log(res)
+        setGroups(updateGroups(request));
       })
       .catch((err) => {
         console.log(err);
