@@ -1,4 +1,4 @@
-import "./GroupContainer.css";
+import "./styles/GroupContainer.css";
 import { useState } from "react";
 import BrightnessSlider from "./BrightnessSlider";
 import useHueGroup from "../hooks/useHueGroup";

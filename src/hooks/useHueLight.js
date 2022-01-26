@@ -34,7 +34,6 @@ export default function useHueLight(props) {
     let on = state.on;
     on = !on;
     const request = { on };
-    console.log(request);
 
     return hueApiRequest(request)
       .then((res) => {
@@ -46,7 +45,6 @@ export default function useHueLight(props) {
   };
 
   const handleChangeColor = async (color) => {
-    // const request = xyColorCoverter(color);
     const request = color;
 
     return hueApiRequest(request)
@@ -60,7 +58,6 @@ export default function useHueLight(props) {
 
   const handleBrightness = async (brightness) => {
     const request = { bri: brightness };
-    // console.log(request);
 
     return hueApiRequest(request)
       .then((res) => {

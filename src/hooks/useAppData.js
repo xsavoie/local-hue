@@ -1,7 +1,5 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Group from "../components/Group";
-import LightContainer from "../components/LightContainer";
 
 export default function useAppData() {
   const bridge = process.env.REACT_APP_HUE_BRIDGE_IP;

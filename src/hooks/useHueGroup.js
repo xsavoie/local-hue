@@ -34,11 +34,9 @@ export default function useHueGroup(props) {
     let on = state.on;
     on = !on;
     const request = { on };
-    // console.log(request);
 
     return hueApiRequest(request)
       .then((res) => {
-        // console.log(res)
         setGroups(updateGroups(request));
       })
       .catch((err) => {
@@ -49,7 +47,6 @@ export default function useHueGroup(props) {
 
   const handleBrightness = async (brightness) => {
     const request = { bri: brightness };
-    // console.log(request);
 
     return hueApiRequest(request)
       .then((res) => {

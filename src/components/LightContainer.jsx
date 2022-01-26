@@ -1,11 +1,9 @@
 import ToggleLight from "./ToggleLight";
-import "./LightContainer.css";
+import "./styles/LightContainer.css";
 import ColorPicker from "./ColorPicker";
 import BrightnessSlider from "./BrightnessSlider";
 import { useState } from "react";
 import useHueLight from "../hooks/useHueLight";
-
-// todo: change id, state, lights, setlights to context and inject in components
 
 export default function LightContainer(props) {
   const { id, name, state } = props;

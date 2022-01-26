@@ -3,7 +3,7 @@ import { RgbColorPicker } from "react-colorful";
 import useClickOutside from "../hooks/useClickOutside";
 import useHueLight from "../hooks/useHueLight";
 import { xyColorCoverter, rgbColorConverter } from "../lib/ColorConverters";
-import "./ColorPicker.css";
+import "./styles/ColorPicker.css";
 
 export default function ColorPicker(props) {
   const { color, setColor, bri } = props;
