@@ -75,7 +75,6 @@ export default function useHueLight(props) {
   return {
     handleToggle,
     updateLights,
-    xyColorCoverter,
     handleChangeColor,
     handleBrightness,
   };
