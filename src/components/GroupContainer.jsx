@@ -6,7 +6,7 @@ import { useState } from "react";
 import ToggleGroup from "./ToggleGroup";
 
 export default function GroupContainer(props) {
-  const { name, lights } = props;
+  const { name, lights, id, state } = props;
   // const [bri, setBri] = useState(state.bri);
   // const [color, setColor] = useState(state.xy);
 
@@ -14,10 +14,10 @@ export default function GroupContainer(props) {
     <div className="group-container">
       <div className="group-info">
         <h4>{name}</h4>
-        <h4>lights: {lights}</h4>
+        <h4>id: {id}</h4>
       </div>
       <div>
-        <ToggleGroup />
+        <ToggleGroup id={id} state={state}/>
       </div>
     </div>
   );

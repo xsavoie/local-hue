@@ -48,9 +48,11 @@ export default function useAppData() {
     return axios
       .get(`http://${bridge}/api/${username}/groups/`)
       .then((groups) => {
+        console.log("groups", groups);
         const parsedGroups = Object.keys(groups.data).map(
-          (group) => groups.data[group]
+          (group) => ({...groups.data[group], id: group})
         );
+        console.log("parsedGroups", parsedGroups)
         setGroups(parsedGroups.reverse());
       })
       .catch((err) => {

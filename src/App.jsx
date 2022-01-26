@@ -22,12 +22,18 @@ function App() {
     />
   ));
 
-  console.log(groups)
+  // console.log(groups)
   const groupsToDisplay = groups.map((group) => (
-    <GroupContainer key={group.name} name={group.name} lights={group.lights} />
+    <GroupContainer
+      key={group.id}
+      id={group.id}
+      name={group.name}
+      state={group.action}
+      lights={group.lights}
+      groups={groups}
+      setGroups={setGroups}
+    />
   ));
-
-  console.log("app loaded");
 
   return (
     <div className="App">
