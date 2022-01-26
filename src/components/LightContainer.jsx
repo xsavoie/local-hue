@@ -3,6 +3,7 @@ import "./LightContainer.css";
 import ColorPicker from "./ColorPicker";
 import BrightnessSlider from "./BrightnessSlider";
 import { useState } from "react";
+import useHueLight from "../hooks/useHueLight";
 
 // todo: change id, state, lights, setlights to context and inject in components
 
@@ -10,6 +11,8 @@ export default function LightContainer(props) {
   const { id, name, state } = props;
   const [bri, setBri] = useState(state.bri);
   const [color, setColor] = useState(state.xy);
+
+  const { handleBrightness } = useHueLight(props);
 
   return (
     <div className="light-container">
@@ -28,9 +31,7 @@ export default function LightContainer(props) {
           id={id}
           bri={bri}
           setBri={setBri}
-          state={state}
-          lights={props.lights}
-          setLights={props.setLights}
+          handleBrightness={handleBrightness}
         />
          <ColorPicker
           id={id}

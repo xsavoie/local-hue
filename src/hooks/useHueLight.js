@@ -1,5 +1,4 @@
 import axios from "axios";
-import { xyColorCoverter } from "../lib/ColorConverters";
 const bridge = process.env.REACT_APP_HUE_BRIDGE_IP;
 const username = process.env.REACT_APP_HUE_USERNAME;
 

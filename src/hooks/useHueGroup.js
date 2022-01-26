@@ -46,5 +46,24 @@ export default function useHueGroup(props) {
       });
   };
 
-  return { handleToggle, updateGroups }
+
+  const handleBrightness = async (brightness) => {
+    const request = { bri: brightness };
+    // console.log(request);
+
+    return hueApiRequest(request)
+      .then((res) => {
+        setGroups(updateGroups(request));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+
+  const syncState = (lightState, groupState) {
+    // loop over lights inside group state, for each chance the lightstate to reflect change
+  }
+
+  return { handleToggle, updateGroups, handleBrightness }
 }
