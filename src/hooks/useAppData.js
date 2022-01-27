@@ -6,6 +6,7 @@ export default function useAppData() {
   const username = process.env.REACT_APP_HUE_USERNAME;
   const [lights, setLights] = useState([]);
   const [groups, setGroups] = useState([]);
+  const [scenes, setScenes] = useState([]);
 
   const lightsParser = (data) => {
     let lightsArray = [];
@@ -55,6 +56,28 @@ export default function useAppData() {
       });
   }, []);
 
+  useEffect(() => {
+    return axios
+    .get(`http://${bridge}/api/${username}/scenes/`)
+    .then((scenes) => {
+      console.log("scenes:", scenes);
+      const parsedScenes = Object.keys(scenes.data).map(
+      (scene) => ({...scenes.data[scene], id: scene})
+      );
+      setScenes(parsedScenes);
+      // console.log("parsedScenes:", parsedScenes);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  },[]);
 
-  return { lightsParser, lights, setLights, groups, setGroups }
+
+  return {  
+    lights, 
+    setLights, 
+    groups, 
+    setGroups, 
+    scenes, 
+    setScenes }
 }

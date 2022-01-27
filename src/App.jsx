@@ -4,7 +4,7 @@ import LightContainer from "./components/LightContainer";
 import useAppData from "./hooks/useAppData";
 
 function App() {
-  const { lights, setLights, groups, setGroups } = useAppData();
+  const { lights, setLights, groups, setGroups, scenes } = useAppData();
 
   const lightsToDisplay = lights.map((light) => (
     <LightContainer
@@ -14,6 +14,7 @@ function App() {
       state={light.state}
       lights={lights}
       setLights={setLights}
+      scenes={scenes}
     />
   ));
 
@@ -26,6 +27,8 @@ function App() {
       lights={group.lights}
       groups={groups}
       setGroups={setGroups}
+      scenes={scenes}
+
     />
   ));
 

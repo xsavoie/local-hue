@@ -8,7 +8,7 @@ export default function useHueLight(props) {
 
   const hueApiRequest = async (request) => {
     try {
-      return axios.put(
+      await axios.put(
         `http://${bridge}/api/${username}/lights/${id}/state`,
         request
       );

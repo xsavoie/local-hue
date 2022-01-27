@@ -6,11 +6,16 @@ import ToggleLight from "./ToggleLight";
 import ColorPicker from "./ColorPicker";
 
 export default function GroupContainer(props) {
-  const { name, id, state } = props;
+  const { name, id, state, scenes } = props;
   const [bri, setBri] = useState(state.bri);
   const [color, setColor] = useState(state.xy);
 
   const { handleGroupChange } = useHueGroup(props);
+
+  const parsedScenes = scenes.filter(scene => scene.group === id);
+
+  console.log(`parsedScenes for id ${id}`, parsedScenes)
+
   
   return (
     <div className="group-container">
