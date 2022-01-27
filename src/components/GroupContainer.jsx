@@ -10,7 +10,7 @@ export default function GroupContainer(props) {
   const [bri, setBri] = useState(state.bri);
   const [color, setColor] = useState(state.xy);
 
-  const { handleBrightness, handleToggle, handleChangeColor } = useHueGroup(props);
+  const { handleGroupChange } = useHueGroup(props);
   
   return (
     <div className="group-container">
@@ -22,20 +22,20 @@ export default function GroupContainer(props) {
         <ToggleLight
           id={id}
           state={state}
-          handleToggle={handleToggle}
+          handleToggle={handleGroupChange}
         />
         <BrightnessSlider
           id={id}
           bri={bri}
           setBri={setBri}
-          handleBrightness={handleBrightness}
+          handleBrightness={handleGroupChange}
         />
           <ColorPicker
           id={id}
           color={color}
           bri={bri}
           setColor={setColor}
-          handleChangeColor={handleChangeColor}
+          handleChangeColor={handleGroupChange}
         />
       </div>
     </div>

@@ -16,25 +16,27 @@ export default function useHueLight(props) {
     }
   };
 
-  const updateLights = (request) => {
+
+  const updateState = (request, state) => {
     const param = Object.keys(request)[0];
-    let lightsCopy = [...lights];
-
-    const lightToUpdate = lightsCopy.find((light) => light.id === id);
-    lightToUpdate.state = { ...lightToUpdate.state, [param]: request[param] };
-
-    const updatedState = lights.map((light) =>
-      light.id === id ? lightToUpdate : light
+    let stateCopy = [...state];
+    const dataToUpdate = stateCopy.find((data) => data.id === id);
+    dataToUpdate.state = { ...dataToUpdate.state, [param]: request[param] };
+    
+    const updatedState = state.map((data) =>
+      data.id === id ? dataToUpdate : data
     );
 
     return updatedState;
   };
 
+  
+
 
   const handleLightChange = async (params) => {
     try {
       const request = await hueApiRequest(params);
-      setLights(updateLights(params));
+      setLights(updateState(params, lights));
     } catch (error) {
       console.log(error)
     }
