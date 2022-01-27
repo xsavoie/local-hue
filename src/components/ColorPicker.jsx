@@ -6,8 +6,8 @@ import { xyColorCoverter, rgbColorConverter } from "../lib/ColorConverters";
 import "./styles/ColorPicker.css";
 
 export default function ColorPicker(props) {
-  const { color, setColor, bri } = props;
-  const { handleChangeColor } = useHueLight(props);
+  const { color, setColor, bri, handleChangeColor } = props;
+  // const { handleChangeColor } = useHueLight(props);
 
   const [lastColor, setLastColor] = useState(rgbColorConverter(color, bri));
 

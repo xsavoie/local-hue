@@ -3,13 +3,14 @@ import { useState } from "react";
 import BrightnessSlider from "./BrightnessSlider";
 import useHueGroup from "../hooks/useHueGroup";
 import ToggleLight from "./ToggleLight";
+import ColorPicker from "./ColorPicker";
 
 export default function GroupContainer(props) {
   const { name, id, state } = props;
   const [bri, setBri] = useState(state.bri);
   const [color, setColor] = useState(state.xy);
 
-  const { handleBrightness, handleToggle } = useHueGroup(props);
+  const { handleBrightness, handleToggle, handleChangeColor } = useHueGroup(props);
 
   return (
     <div className="group-container">
@@ -28,6 +29,13 @@ export default function GroupContainer(props) {
           bri={bri}
           setBri={setBri}
           handleBrightness={handleBrightness}
+        />
+          <ColorPicker
+          id={id}
+          color={color}
+          bri={bri}
+          setColor={setColor}
+          handleChangeColor={handleChangeColor}
         />
       </div>
     </div>
