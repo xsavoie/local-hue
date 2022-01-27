@@ -5,13 +5,13 @@ import { useState } from "react";
 
 export default function ({ scenes }) {
 
-  const [selectedScene, setSelectedScene] = useState('')
+  const [selectedScene, setSelectedScene] = useState()
 
-  const listItems = scenes.map(scene => <MenuItem key={scene.id} value={scene.id, scene.name}>{scene.name}</MenuItem>)
+  const listItems = scenes.map(scene => <MenuItem key={scene.id} value={`${scene.id}, ${scene.name}`}>{scene.name}</MenuItem>)
   console.log(selectedScene)
 
   const handleChange = (scene) => {
-    setSelectedScene(scene)
+    setSelectedScene(scene.target.value)
     console.log(selectedScene)
   }
 
