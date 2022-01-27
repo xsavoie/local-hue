@@ -22,7 +22,7 @@ function App() {
       key={group.id}
       id={group.id}
       name={group.name}
-      state={group.action}
+      state={group.state}
       lights={group.lights}
       groups={groups}
       setGroups={setGroups}

@@ -32,7 +32,6 @@ export default function useAppData() {
       .get(`http://${bridge}/api/${username}/lights/`)
       .then((lights) => {
         const lightsArray = lightsParser(lights.data);
-        // console.log("light state", lightsArray);
         // temporeray reverse for dev purposes
         setLights(lightsArray.reverse());
       })
@@ -47,9 +46,8 @@ export default function useAppData() {
       .get(`http://${bridge}/api/${username}/groups/`)
       .then((groups) => {
         const parsedGroups = Object.keys(groups.data).map(
-          (group) => ({...groups.data[group], id: group})
+          (group) => ({...groups.data[group], id: group, state: groups.data[group].action, action: groups.data[group].state})
         );
-        console.log("parsedGroups", parsedGroups)
         setGroups(parsedGroups.reverse());
       })
       .catch((err) => {
