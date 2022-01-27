@@ -60,7 +60,7 @@ export default function useAppData() {
     return axios
     .get(`http://${bridge}/api/${username}/scenes/`)
     .then((scenes) => {
-      console.log("scenes:", scenes);
+      // console.log("scenes:", scenes);
       const parsedScenes = Object.keys(scenes.data).map(
       (scene) => ({...scenes.data[scene], id: scene})
       );

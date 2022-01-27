@@ -4,6 +4,7 @@ import BrightnessSlider from "./BrightnessSlider";
 import useHueGroup from "../hooks/useHueGroup";
 import ToggleLight from "./ToggleLight";
 import ColorPicker from "./ColorPicker";
+import ScenesDropdown from "./ScenesDropdown";
 
 export default function GroupContainer(props) {
   const { name, id, state, scenes } = props;
@@ -12,11 +13,11 @@ export default function GroupContainer(props) {
 
   const { handleGroupChange } = useHueGroup(props);
 
-  const parsedScenes = scenes.filter(scene => scene.group === id);
+  const parsedScenes = scenes.filter((scene) => scene.group === id);
 
-  console.log(`parsedScenes for id ${id}`, parsedScenes)
+  // console.log(`parsedScenes for id ${id}`, parsedScenes);
+  const list = parsedScenes.map((scene) => <li>{scene.name}</li>);
 
-  
   return (
     <div className="group-container">
       <div className="group-info">
@@ -24,25 +25,23 @@ export default function GroupContainer(props) {
         <h4>id: {id}</h4>
       </div>
       <div>
-        <ToggleLight
-          id={id}
-          state={state}
-          handleToggle={handleGroupChange}
-        />
+        <ToggleLight id={id} state={state} handleToggle={handleGroupChange} />
         <BrightnessSlider
           id={id}
           bri={bri}
           setBri={setBri}
           handleBrightness={handleGroupChange}
         />
-          <ColorPicker
+        <ColorPicker
           id={id}
           color={color}
           bri={bri}
           setColor={setColor}
           handleChangeColor={handleGroupChange}
         />
+        <ScenesDropdown scenes={parsedScenes} />
       </div>
+      {/* <ul>{list}</ul> */}
     </div>
   );
 }
