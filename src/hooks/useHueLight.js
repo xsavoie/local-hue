@@ -31,42 +31,37 @@ export default function useHueLight(props) {
   };
 
   const handleToggle = async (state) => {
-    let on = state.on;
-    on = !on;
-    const request = { on };
+    const params = { on: !state.on };
 
-    return hueApiRequest(request)
-      .then((res) => {
-        setLights(updateLights(request));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  const handleChangeColor = async (color) => {
-    const request = color;
-
-    return hueApiRequest(request)
-      .then((res) => {
-        setLights(updateLights(request));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    try {
+      const request = await hueApiRequest(params);
+      setLights(updateLights(params));
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleBrightness = async (brightness) => {
-    const request = { bri: brightness };
+    const params = { bri: brightness };
 
-    return hueApiRequest(request)
-      .then((res) => {
-        setLights(updateLights(request));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    try {
+      const request = await hueApiRequest(params);
+      setLights(updateLights(params));
+    } catch (error) {
+      console.log(error);
+    }
   };
+
+  const handleChangeColor = async (color) => {
+    const params = color;
+    try {
+      const request = await hueApiRequest(params);
+      setLights(updateLights(params));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
 
   return {
     handleToggle,
