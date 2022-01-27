@@ -11,7 +11,7 @@ export default function GroupContainer(props) {
   const [color, setColor] = useState(state.xy);
 
   const { handleBrightness, handleToggle, handleChangeColor } = useHueGroup(props);
-
+  
   return (
     <div className="group-container">
       <div className="group-info">

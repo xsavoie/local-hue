@@ -10,7 +10,7 @@ export default function LightContainer(props) {
   const [bri, setBri] = useState(state.bri);
   const [color, setColor] = useState(state.xy);
 
-  const { handleBrightness, handleToggle, handleChangeColor } = useHueLight(props);
+  const { handleLightChange } = useHueLight(props);
 
   return (
     <div className="light-container">
@@ -22,20 +22,20 @@ export default function LightContainer(props) {
         <ToggleLight
           id={id}
           state={state}
-          handleToggle={handleToggle}
+          handleToggle={handleLightChange}
         />
         <BrightnessSlider
           id={id}
           bri={bri}
           setBri={setBri}
-          handleBrightness={handleBrightness}
+          handleBrightness={handleLightChange}
         />
          <ColorPicker
           id={id}
           bri={bri}
           color={color}
           setColor={setColor}
-          handleChangeColor={handleChangeColor}
+          handleChangeColor={handleLightChange}
         />
       </div>
     </div>

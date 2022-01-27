@@ -5,7 +5,7 @@ export default function BrightnessSlider(props) {
 
   const handleChange = (event, newValue) => {
     setBri(newValue);
-    handleBrightness(newValue);
+    handleBrightness({bri: newValue});
   };
 
   return (

@@ -3,7 +3,7 @@ const bridge = process.env.REACT_APP_HUE_BRIDGE_IP;
 const username = process.env.REACT_APP_HUE_USERNAME;
 
 export default function useHueLight(props) {
-  const { id, state, lights, setLights } = props;
+  const { id, lights, setLights } = props;
 
   const hueApiRequest = async (request) => {
     try {
@@ -30,43 +30,15 @@ export default function useHueLight(props) {
     return updatedState;
   };
 
-  const handleToggle = async (state) => {
-    const params = { on: !state.on };
 
+  const handleLightChange = async (params) => {
     try {
       const request = await hueApiRequest(params);
       setLights(updateLights(params));
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
 
-  const handleBrightness = async (brightness) => {
-    const params = { bri: brightness };
-
-    try {
-      const request = await hueApiRequest(params);
-      setLights(updateLights(params));
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const handleChangeColor = async (color) => {
-    const params = color;
-    try {
-      const request = await hueApiRequest(params);
-      setLights(updateLights(params));
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-
-  return {
-    handleToggle,
-    updateLights,
-    handleChangeColor,
-    handleBrightness,
-  };
+  return { handleLightChange };
 }

@@ -7,7 +7,7 @@ export default function ToggleLight(props) {
     <div>
       <Switch
         checked={state.on}
-        onClick={() => handleToggle(state)}
+        onClick={() => handleToggle({on: !state.on})}
       />
     </div>
   );
