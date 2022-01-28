@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+const bridge = process.env.REACT_APP_HUE_BRIDGE_IP;
+const username = process.env.REACT_APP_HUE_USERNAME;
 
 export default function useAppData() {
-  const bridge = process.env.REACT_APP_HUE_BRIDGE_IP;
-  const username = process.env.REACT_APP_HUE_USERNAME;
   const [lights, setLights] = useState([]);
   const [groups, setGroups] = useState([]);
   const [scenes, setScenes] = useState([]);
@@ -13,7 +13,7 @@ export default function useAppData() {
     for (const light in data) {
       lightsArray.push(light);
     }
-  
+
     const parsedArray = lightsArray.map(
       (light) =>
         (light = {
@@ -22,62 +22,75 @@ export default function useAppData() {
           state: data[light].state,
         })
     );
-  
+
     return parsedArray;
   };
 
-
   // get all light info
   useEffect(() => {
-    return axios
-      .get(`http://${bridge}/api/${username}/lights/`)
-      .then((lights) => {
-        const lightsArray = lightsParser(lights.data);
-        // temporeray reverse for dev purposes
+    async function fetchLightsApi() {
+      try {
+        const apiResponse = await axios.get(
+          `http://${bridge}/api/${username}/lights/`
+        );
+        const lightsArray = lightsParser(apiResponse.data);
         setLights(lightsArray.reverse());
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    fetchLightsApi();
   }, []);
 
   // get all groups info
   useEffect(() => {
-    return axios
-      .get(`http://${bridge}/api/${username}/groups/`)
-      .then((groups) => {
-        const parsedGroups = Object.keys(groups.data).map(
-          (group) => ({...groups.data[group], id: group, state: groups.data[group].action, action: groups.data[group].state})
+    async function fetchGroupApi() {
+      try {
+        const apiResponse = await axios.get(
+          `http://${bridge}/api/${username}/groups/`
         );
-        setGroups(parsedGroups.reverse());
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+        const groupsArray = Object.keys(apiResponse.data).map((group) => ({
+          ...apiResponse.data[group],
+          id: group,
+          state: apiResponse.data[group].action,
+          action: apiResponse.data[group].state,
+        }));
+        setGroups(groupsArray.reverse());
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    fetchGroupApi();
   }, []);
 
   useEffect(() => {
-    return axios
-    .get(`http://${bridge}/api/${username}/scenes/`)
-    .then((scenes) => {
-      // console.log("scenes:", scenes);
-      const parsedScenes = Object.keys(scenes.data).map(
-      (scene) => ({...scenes.data[scene], id: scene})
-      );
-      setScenes(parsedScenes);
-      // console.log("parsedScenes:", parsedScenes);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  },[]);
+    async function fetchScenesApi() {
+      try {
+        const apiResponse = await axios.get(
+          `http://${bridge}/api/${username}/scenes/`
+        );
+        const parsedScenes = Object.keys(apiResponse.data).map((scene) => ({
+          ...apiResponse.data[scene],
+          id: scene,
+        }));
+        // console.log(parsedScenes)
+        setScenes(parsedScenes);
+      } catch (error) {
+        console.log(error);
+      }
+    }
 
+    fetchScenesApi();
+  }, []);
 
-  return {  
-    lights, 
-    setLights, 
-    groups, 
-    setGroups, 
-    scenes, 
-    setScenes }
+  return {
+    lights,
+    setLights,
+    groups,
+    setGroups,
+    scenes,
+    setScenes,
+  };
 }
