@@ -4,7 +4,6 @@ import ColorPicker from "./ColorPicker";
 import BrightnessSlider from "./BrightnessSlider";
 import { useState } from "react";
 import useHueLight from "../hooks/useHueLight";
-import ScenesDropdown from "./ScenesDropdown";
 
 export default function LightContainer(props) {
   const { id, name, state } = props;

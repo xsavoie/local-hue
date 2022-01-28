@@ -15,9 +15,6 @@ export default function GroupContainer(props) {
 
   const parsedScenes = scenes.filter((scene) => scene.group === id);
 
-  // console.log(`parsedScenes for id ${id}`, parsedScenes);
-  const list = parsedScenes.map((scene) => <li>{scene.name}</li>);
-
   return (
     <div className="group-container">
       <div className="group-info">
@@ -44,7 +41,6 @@ export default function GroupContainer(props) {
           handleSceneChange={handleGroupChange}
         />
       </div>
-      {/* <ul>{list}</ul> */}
     </div>
   );
 }

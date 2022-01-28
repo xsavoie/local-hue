@@ -1,7 +1,11 @@
+import { useState } from "react";
 import GroupContainer from "./GroupContainer";
 import SetView from "./SetView";
 
 export default function Groups({ groups, setGroups, scenes }) {
+  const [groupView, setGroupView] = useState("");
+
+
   const groupContainers = groups.map((group) => (
     <GroupContainer
       key={group.id}
