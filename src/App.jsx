@@ -8,7 +8,7 @@ function App() {
 
   return (
     <div className="App">
-      <Lights lights={lights} setLights={setLights} scenes={scenes} />
+      {/* <Lights lights={lights} setLights={setLights} scenes={scenes} /> */}
       <Groups groups={groups} setGroups={setGroups} scenes={scenes} />
     </div>
   );

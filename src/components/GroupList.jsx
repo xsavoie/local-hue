@@ -1,3 +1,11 @@
+import GroupListItem from "./GroupListItem";
+
 export default function GroupList() {
-  return <p>group list</p>;
+  return (
+    <div>
+      <GroupListItem />
+      <GroupListItem />
+      <GroupListItem />
+    </div>
+  );
 }

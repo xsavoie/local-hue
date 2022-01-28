@@ -1,10 +1,10 @@
 import { useState } from "react";
 import GroupContainer from "./GroupContainer";
+import GroupList from "./GroupList";
 import SetView from "./SetView";
 
 export default function Groups({ groups, setGroups, scenes }) {
-  const [groupView, setGroupView] = useState("");
-
+  const [groupView, setGroupView] = useState("GRID");
 
   const groupContainers = groups.map((group) => (
     <GroupContainer
@@ -21,9 +21,12 @@ export default function Groups({ groups, setGroups, scenes }) {
 
   return (
     <div>
-      <SetView />
       <h3>Groups</h3>
-      <div className="container">{groupContainers}</div>
+      <SetView groupView={groupView} setGroupView={setGroupView} />
+      <div className="container">
+        {groupView === "GRID" && groupContainers}
+        {groupView === "LIST" && <GroupList />}
+      </div>
     </div>
   );
 }
