@@ -4,6 +4,7 @@ import ColorPicker from "./ColorPicker";
 import BrightnessSlider from "./BrightnessSlider";
 import { useState } from "react";
 import useHueLight from "../hooks/useHueLight";
+import ScenesDropdown from "./ScenesDropdown";
 
 export default function LightContainer(props) {
   const { id, name, state } = props;
@@ -19,18 +20,14 @@ export default function LightContainer(props) {
         <h4>id: {id}</h4>
       </div>
       <div>
-        <ToggleLight
-          id={id}
-          state={state}
-          handleToggle={handleLightChange}
-        />
+        <ToggleLight id={id} state={state} handleToggle={handleLightChange} />
         <BrightnessSlider
           id={id}
           bri={bri}
           setBri={setBri}
           handleBrightness={handleLightChange}
         />
-         <ColorPicker
+        <ColorPicker
           id={id}
           bri={bri}
           color={color}

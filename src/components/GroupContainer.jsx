@@ -39,7 +39,10 @@ export default function GroupContainer(props) {
           setColor={setColor}
           handleChangeColor={handleGroupChange}
         />
-        <ScenesDropdown scenes={parsedScenes} handleSceneChange={handleGroupChange}/>
+        <ScenesDropdown
+          scenes={parsedScenes}
+          handleSceneChange={handleGroupChange}
+        />
       </div>
       {/* <ul>{list}</ul> */}
     </div>

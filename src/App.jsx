@@ -5,6 +5,7 @@ import useAppData from "./hooks/useAppData";
 
 function App() {
   const { lights, setLights, groups, setGroups, scenes } = useAppData();
+  console.log(scenes);
 
   const lightsToDisplay = lights.map((light) => (
     <LightContainer
