@@ -1,18 +1,28 @@
 /* eslint-disable */
+// SAMPLE URL
+// /api/***/groups/6/action
+// BODY: 
+// {
+//   "scene": "cIioODd0ATPNjBV"
+// }
 
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { useState } from "react";
 
-export default function ({ scenes }) {
+export default function ({ scenes, handleSceneChange }) {
 
-  const [selectedScene, setSelectedScene] = useState('')
+  const [selectedScene, setSelectedScene] = useState('');
 
-  const listItems = scenes.map(scene => <MenuItem key={scene.id} value={`${scene.id}, ${scene.name}`}>{scene.name}</MenuItem>)
-  console.log(selectedScene)
+  const listItems = scenes.map(scene => <MenuItem key={scene.id} value={scene.id}>{scene.name}</MenuItem>);
+  // const listItems = scenes.map(scene => <MenuItem key={scene.id} value={`${scene.id}, ${scene.name}`}>{scene.name}</MenuItem>)
+  console.log(selectedScene);
 
+  
   const handleChange = (scene) => {
-    setSelectedScene(scene.target.value)
-    console.log(selectedScene)
+    setSelectedScene(scene.target.value);
+    const request = { scene: scene.target.value};
+    handleSceneChange(request);
+    console.log(selectedScene);
   }
 
 
