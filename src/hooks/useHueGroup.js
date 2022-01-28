@@ -18,7 +18,6 @@ export default function useHueGroup(props) {
   };
 
   const handleGroupChange = async (params) => {
-    console.log("params", params)
     try {
       const request = await hueApiRequest(params);
       setGroups(updateState(params, groups, id));

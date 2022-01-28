@@ -1,11 +1,13 @@
+// import { Stack, Switch, Typography } from "@mui/material";
+import { useState } from "react";
 import "./App.css";
-import GroupContainer from "./components/GroupContainer";
+import Groups from "./components/Groups";
 import LightContainer from "./components/LightContainer";
 import useAppData from "./hooks/useAppData";
 
 function App() {
   const { lights, setLights, groups, setGroups, scenes } = useAppData();
-  // console.log(scenes);
+  const [groupView, setGroupView] = useState("");
 
   const lightsToDisplay = lights.map((light) => (
     <LightContainer
@@ -19,26 +21,11 @@ function App() {
     />
   ));
 
-  const groupsToDisplay = groups.map((group) => (
-    <GroupContainer
-      key={group.id}
-      id={group.id}
-      name={group.name}
-      state={group.state}
-      lights={group.lights}
-      groups={groups}
-      setGroups={setGroups}
-      scenes={scenes}
 
-    />
-  ));
 
   return (
     <div className="App">
-      <h3>Lights</h3>
-      <div className="container">{lightsToDisplay}</div>
-      <h3>Groups</h3>
-      <div className="container">{groupsToDisplay}</div>
+      <Groups groups={groups} setGroups={setGroups} scenes={scenes} />
     </div>
   );
 }
