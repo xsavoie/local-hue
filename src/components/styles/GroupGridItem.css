@@ -1,15 +1,4 @@
-/* .group-container {
-  display: grid;
-  grid-template-columns: 250px 250px;
-  grid-template-rows: auto;
-
-
-  border: 3px solid grey;
-  border-radius: 14px;
-  margin: 0 2%;
-} */
-
-.group-panel {
+.grid-item--container {
   flex: 1 0 21%;
   display: flex;
   justify-content: space-between;
@@ -22,14 +11,14 @@
   margin: 2% 2%;
 }
 
-.group--info {
+.grid-item--info {
   display: flex;
   flex-direction: row;
   justify-content: center;
   margin: 0 10% 0;
 }
 
-.group--control {
+.grid-item--control {
   /* margin: 4% 4% 2%; */
   padding: 4%;
 }

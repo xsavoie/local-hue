@@ -1,4 +1,4 @@
-import "./styles/GroupContainer.css";
+import "./styles/GroupGridItem.css";
 import { useState } from "react";
 import BrightnessSlider from "./BrightnessSlider";
 import useHueGroup from "../hooks/useHueGroup";
@@ -16,13 +16,11 @@ export default function GroupContainer(props) {
   const parsedScenes = scenes.filter((scene) => scene.group === id);
 
   return (
-    <div className="group-panel">
-      <div className="group--info">
+    <div className="grid-item--container">
+      <header className="grid-item--info">
         <h4>{name}</h4>
-        {/* <h4>id: {id}</h4> */}
-      </div>
-      <div>
-        <div className="group--control">
+      </header>
+        <div className="grid-item--control">
           <ToggleLight id={id} state={state} handleToggle={handleGroupChange} />
           <BrightnessSlider
             id={id}
@@ -42,7 +40,6 @@ export default function GroupContainer(props) {
             handleSceneChange={handleGroupChange}
           />
         </div>
-      </div>
     </div>
   );
 }

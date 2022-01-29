@@ -6,7 +6,7 @@ export default function ScenesDropdown({ scenes, handleSceneChange }) {
   const [selectedScene, setSelectedScene] = useState('');
 
   const listItems = scenes.map(scene => <MenuItem key={scene.id} value={scene.id}>{scene.name}</MenuItem>);
-  const noScenes = <MenuItem value={null}>No scenes setup</MenuItem>
+  const noScenes = <MenuItem value={null}>No scenes selected</MenuItem>
 
   
   const handleChange = (scene) => {
