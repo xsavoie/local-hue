@@ -1,7 +1,7 @@
-import ToggleLight from "./ToggleLight";
+import ToggleLight from "./light-controls/ToggleLight";
 import "./styles/LightContainer.css";
-import ColorPicker from "./ColorPicker";
-import BrightnessSlider from "./BrightnessSlider";
+import ColorPicker from "./light-controls/ColorPicker";
+import BrightnessSlider from "./light-controls/BrightnessSlider";
 import { useState } from "react";
 import useHueLight from "../hooks/useHueLight";
 

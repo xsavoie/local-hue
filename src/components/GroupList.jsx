@@ -1,5 +1,5 @@
 import GroupListItem from "./GroupListItem";
-import './styles/Group.css'
+import './styles/Group.css';
 
 
 export default function GroupList({ groups, setGroups, scenes }) {

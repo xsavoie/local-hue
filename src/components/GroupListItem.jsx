@@ -1,10 +1,10 @@
 import { useState } from "react";
 import useHueGroup from "../hooks/useHueGroup";
-import BrightnessSlider from "./BrightnessSlider";
-import ColorPicker from "./ColorPicker";
-import ScenesDropdown from "./ScenesDropdown";
+import BrightnessSlider from "./light-controls/BrightnessSlider";
+import ColorPicker from "./light-controls/ColorPicker";
+import ScenesDropdown from "./light-controls/ScenesDropdown";
 import "./styles/GroupListItem.css";
-import ToggleLight from "./ToggleLight";
+import ToggleLight from "./light-controls/ToggleLight";
 
 export default function GroupListItem(props) {
   const { name, id, state, scenes } = props;
@@ -18,7 +18,7 @@ export default function GroupListItem(props) {
 
   return (
     <div className="list-item--container">
-      <p>{`${name} / id: ${id}`}</p>
+      <h4>{name}</h4>
       <ToggleLight id={id} state={state} handleToggle={handleGroupChange} />
       <BrightnessSlider
         id={id}
