@@ -1,4 +1,6 @@
 import GroupListItem from "./GroupListItem";
+import './styles/Group.css'
+
 
 export default function GroupList({ groups, setGroups, scenes }) {
   
@@ -18,7 +20,7 @@ export default function GroupList({ groups, setGroups, scenes }) {
   ))
 
   return (
-    <div>
+    <div className="group-list">
      {groupListItems}
     </div>
   );

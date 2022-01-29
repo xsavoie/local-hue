@@ -1,0 +1,6 @@
+.list-item--container {
+  background-color: grey;
+  width: 95%;
+  margin: 4px 0;
+  align-self: center;
+}
