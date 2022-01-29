@@ -1,10 +1,13 @@
-import { useState } from "react";
-import GroupExpanded from "./GroupExpanded";
+import { useEffect } from "react";
 import GroupContainer from "./GroupGridItem";
 
-export default function GroupGrid({ groups, setGroups, scenes }) {
-  const [selected, setSelected] = useState("");
-  console.log(selected);
+export default function GroupGrid({
+  groups,
+  setGroups,
+  scenes,
+  selected,
+  setSelected,
+}) {
 
   const groupGridItems = groups.map((group) => (
     <GroupContainer
@@ -21,14 +24,5 @@ export default function GroupGrid({ groups, setGroups, scenes }) {
     />
   ));
 
-  const GroupExpandedItem = (
-    <GroupExpanded selected={selected} setSelected={setSelected} />
-  );
-
-  return (
-    <>
-      {selected && GroupExpandedItem}
-      {!selected && <div className="group-grid">{groupGridItems}</div>}
-    </>
-  );
+  return <div className="group-grid">{groupGridItems}</div>;
 }
