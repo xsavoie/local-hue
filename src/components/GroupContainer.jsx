@@ -16,30 +16,32 @@ export default function GroupContainer(props) {
   const parsedScenes = scenes.filter((scene) => scene.group === id);
 
   return (
-    <div className="group-container">
-      <div className="group-info">
+    <div className="group-panel">
+      <div className="group--info">
         <h4>{name}</h4>
-        <h4>id: {id}</h4>
+        {/* <h4>id: {id}</h4> */}
       </div>
       <div>
-        <ToggleLight id={id} state={state} handleToggle={handleGroupChange} />
-        <BrightnessSlider
-          id={id}
-          bri={bri}
-          setBri={setBri}
-          handleBrightness={handleGroupChange}
-        />
-        <ColorPicker
-          id={id}
-          color={color}
-          bri={bri}
-          setColor={setColor}
-          handleChangeColor={handleGroupChange}
-        />
-        <ScenesDropdown
-          scenes={parsedScenes}
-          handleSceneChange={handleGroupChange}
-        />
+        <div className="group--control">
+          <ToggleLight id={id} state={state} handleToggle={handleGroupChange} />
+          <BrightnessSlider
+            id={id}
+            bri={bri}
+            setBri={setBri}
+            handleBrightness={handleGroupChange}
+          />
+          <ColorPicker
+            id={id}
+            color={color}
+            bri={bri}
+            setColor={setColor}
+            handleChangeColor={handleGroupChange}
+          />
+          <ScenesDropdown
+            scenes={parsedScenes}
+            handleSceneChange={handleGroupChange}
+          />
+        </div>
       </div>
     </div>
   );
