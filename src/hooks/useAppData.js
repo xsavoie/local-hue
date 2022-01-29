@@ -7,6 +7,7 @@ export default function useAppData() {
   const [lights, setLights] = useState([]);
   const [groups, setGroups] = useState([]);
   const [scenes, setScenes] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const lightsParser = (data) => {
     let lightsArray = [];
@@ -74,9 +75,19 @@ export default function useAppData() {
   }
 
   useEffect(() => {
-    fetchLightsApi();
-    fetchGroupApi();
-    fetchScenesApi();
+
+    async function fetchAllApi() {
+      setLoading(true);
+      await fetchLightsApi();
+      await fetchGroupApi();
+      await fetchScenesApi();
+      setLoading(false);
+    }
+
+    fetchAllApi();
+    // fetchLightsApi();
+    // fetchGroupApi();
+    // fetchScenesApi();
   }, []);
 
 
@@ -87,5 +98,6 @@ export default function useAppData() {
     setGroups,
     scenes,
     setScenes,
+    loading
   };
 }
