@@ -1,6 +1,11 @@
 .list-item--container {
-  background-color: grey;
-  width: 95%;
+  /* background-color: grey; */
+  width: 60%;
   margin: 4px 0;
   align-self: center;
+  display: flex;
+  flex-wrap: wrap;
+  border: 3px solid grey;
+  border-radius: 14px;
+
 }

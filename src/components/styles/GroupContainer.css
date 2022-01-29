@@ -10,11 +10,12 @@
 } */
 
 .group-panel {
+  flex: 1 0 21%;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  width: 20%;
-  height: 25%;
+  /* width: 20%; */
+  /* height: 25%; */
   border: 3px solid grey;
   border-radius: 14px;
 
