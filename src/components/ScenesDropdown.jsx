@@ -6,8 +6,7 @@ export default function ScenesDropdown({ scenes, handleSceneChange }) {
   const [selectedScene, setSelectedScene] = useState('');
 
   const listItems = scenes.map(scene => <MenuItem key={scene.id} value={scene.id}>{scene.name}</MenuItem>);
-  // const listItems = scenes.map(scene => <MenuItem key={scene.id} value={`${scene.id}, ${scene.name}`}>{scene.name}</MenuItem>)
-  // console.log(selectedScene);
+  const noScenes = <MenuItem value={null}>No scenes setup</MenuItem>
 
   
   const handleChange = (scene) => {
@@ -28,7 +27,7 @@ export default function ScenesDropdown({ scenes, handleSceneChange }) {
         label="Scene"
         onChange={handleChange}
       >
-        {listItems}
+        {listItems.length > 1 ? listItems : noScenes}
       </Select>
     </FormControl>
   );

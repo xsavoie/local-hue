@@ -1,3 +1,8 @@
-export default function GroupListItem() {
-  return <p>Group List Item</p>;
+export default function GroupListItem(props) {
+  const { name, id, state, scenes } = props;
+
+
+  return <div>
+    <p>{`${name} / id: ${id}`}</p>
+  </div>;
 }

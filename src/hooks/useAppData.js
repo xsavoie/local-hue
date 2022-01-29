@@ -85,9 +85,6 @@ export default function useAppData() {
     }
 
     fetchAllApi();
-    // fetchLightsApi();
-    // fetchGroupApi();
-    // fetchScenesApi();
   }, []);
 
 

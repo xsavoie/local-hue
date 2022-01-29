@@ -25,7 +25,7 @@ export default function Groups({ groups, setGroups, scenes }) {
       <SetView groupView={groupView} setGroupView={setGroupView} />
       <div className="container">
         {groupView === "GRID" && groupContainers}
-        {groupView === "LIST" && <GroupList />}
+        {groupView === "LIST" && <GroupList groups={groups} setGroups={setGroups} scenes={scenes}/>}
       </div>
     </div>
   );
