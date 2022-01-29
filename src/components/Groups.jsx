@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useGroupState } from "../lib/groupState";
 import GroupExpanded from "./GroupExpanded";
 import GroupGrid from "./GroupGrid";
 import GroupList from "./GroupList";
@@ -6,20 +7,17 @@ import SetView from "./SetView";
 import "./styles/Group.css";
 
 export default function Groups({ groups, setGroups, scenes }) {
-  const [groupView, setGroupView] = useState("GRID");
-  const [selected, setSelected] = useState("");
+  const { groupView, selected } = useGroupState();
 
   return (
     <div className="groups">
       <div className="groups--container">
-        <SetView groupView={groupView} setGroupView={setGroupView} />
+        <SetView />
         {selected && (
           <GroupExpanded
             groups={groups}
             setGroups={setGroups}
             scenes={scenes}
-            selected={selected}
-            setSelected={setSelected}
           />
         )}
         {!selected && groupView === "GRID" && (
@@ -27,8 +25,6 @@ export default function Groups({ groups, setGroups, scenes }) {
             groups={groups}
             setGroups={setGroups}
             scenes={scenes}
-            selected={selected}
-            setSelected={setSelected}
           />
         )}
         {!selected && groupView === "LIST" && (
@@ -36,8 +32,6 @@ export default function Groups({ groups, setGroups, scenes }) {
             groups={groups}
             setGroups={setGroups}
             scenes={scenes}
-            selected={selected}
-            setSelected={setSelected}
           />
         )}
       </div>

@@ -1,13 +1,8 @@
-import { useEffect } from "react";
+import { useGroupState } from "../lib/groupState";
 import GroupContainer from "./GroupGridItem";
 
-export default function GroupGrid({
-  groups,
-  setGroups,
-  scenes,
-  selected,
-  setSelected,
-}) {
+export default function GroupGrid({ groups, setGroups, scenes }) {
+  const { selected, setSelected } = useGroupState();
 
   const groupGridItems = groups.map((group) => (
     <GroupContainer
