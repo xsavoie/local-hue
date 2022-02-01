@@ -5,6 +5,7 @@ import ColorPicker from "./light-controls/ColorPicker";
 import ScenesDropdown from "./light-controls/ScenesDropdown";
 import "./styles/GroupListItem.css";
 import ToggleLight from "./light-controls/ToggleLight";
+import ScenesContainer from "./light-controls/ScenesContainer";
 
 export default function GroupListItem(props) {
   const { name, id, state, scenes } = props;
@@ -14,7 +15,6 @@ export default function GroupListItem(props) {
   const { handleGroupChange } = useHueGroup(props);
 
   const parsedScenes = scenes.filter((scene) => scene.group === id);
-
 
   return (
     <div className="list-item--container">
@@ -33,7 +33,11 @@ export default function GroupListItem(props) {
         setColor={setColor}
         handleChangeColor={handleGroupChange}
       />
-      <ScenesDropdown
+      {/* <ScenesDropdown
+        scenes={parsedScenes}
+        handleSceneChange={handleGroupChange}
+      /> */}
+      <ScenesContainer
         scenes={parsedScenes}
         handleSceneChange={handleGroupChange}
       />

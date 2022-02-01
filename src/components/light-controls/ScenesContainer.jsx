@@ -14,7 +14,7 @@ export default function ScenesContainer({ scenes, handleSceneChange }) {
         selectedScene={selectedScene}
         setSelectedScene={setSelectedScene}
       />
-      <ScenesPlayButton selectedScene={selectedScene} handleSceneChange={handleSceneChange}/>
+      <ScenesPlayButton selectedScene={selectedScene} handleSceneChange={handleSceneChange} />
     </div>
   );
 }

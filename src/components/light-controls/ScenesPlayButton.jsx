@@ -1,8 +1,16 @@
-export default function ScenesPlayButton({ selectedScene, handleSceneChange }) {
+import { useState } from "react";
+
+export default function ScenesPlayButton({ selectedScene, handleSceneChange,  }) {
+const [colorloop, setColorloop] = useState(false);
+  console.log(selectedScene)
   const handlePlayScene = () => {
-    handleSceneChange({"effect": "colorloop"})
-    console.log(selectedScene)
+    const request = colorloop ? "none" : "colorloop";
+    setColorloop(!colorloop);
+    handleSceneChange({"effect": request});
+    console.log(selectedScene, request);
   }
 
-  return <button type="button" onClick={handlePlayScene}>►</button>
+  let buttonStatus = colorloop ? "❚❚" : "►";
+
+  return <button type="button" onClick={handlePlayScene} disabled={!selectedScene}>{buttonStatus}</button>
 }
