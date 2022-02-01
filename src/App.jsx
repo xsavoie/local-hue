@@ -7,6 +7,7 @@ import { GroupStateProvider } from "./lib/groupState";
 function App() {
   const { lights, setLights, groups, setGroups, scenes, loading } =
     useAppData();
+    console.log(groups);
 
   if (loading) return <p>Getting Hue Data...</p>;
   return (
