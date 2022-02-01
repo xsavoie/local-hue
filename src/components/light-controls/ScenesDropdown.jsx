@@ -13,7 +13,7 @@ export default function ScenesDropdown({ scenes, handleSceneChange }) {
     setSelectedScene(scene.target.value);
     const request = { scene: scene.target.value};
     handleSceneChange(request);
-    console.log(selectedScene);
+    console.log(scene.target.value);
   }
 
 
