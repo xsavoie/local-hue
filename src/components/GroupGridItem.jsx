@@ -6,6 +6,7 @@ import ToggleLight from "./light-controls/ToggleLight";
 import ColorPicker from "./light-controls/ColorPicker";
 import ScenesDropdown from "./light-controls/ScenesDropdown";
 import ExpandedView from "./ExpandView";
+import ScenesContainer from "./light-controls/ScenesContainer";
 
 export default function GroupContainer(props) {
   const { name, id, state, scenes, selected, setSelected } = props;
@@ -37,10 +38,11 @@ export default function GroupContainer(props) {
             setColor={setColor}
             handleChangeColor={handleGroupChange}
           />
-          <ScenesDropdown
+          {/* <ScenesDropdown
             scenes={parsedScenes}
             handleSceneChange={handleGroupChange}
-          />
+          /> */}
+          <ScenesContainer scenes={parsedScenes} handleSceneChange={handleGroupChange} />
         </div>
     </div>
   );

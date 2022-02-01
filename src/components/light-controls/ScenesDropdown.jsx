@@ -1,9 +1,9 @@
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { useState } from "react";
 
-export default function ScenesDropdown({ scenes, handleSceneChange }) {
+export default function ScenesDropdown({ scenes, handleSceneChange, selectedScene, setSelectedScene }) {
 
-  const [selectedScene, setSelectedScene] = useState('');
+  // const [selectedScene, setSelectedScene] = useState('');
 
   const listItems = scenes.map(scene => <MenuItem key={scene.id} value={scene.id}>{scene.name}</MenuItem>);
   const noScenes = <MenuItem value={null}>No scenes selected</MenuItem>
